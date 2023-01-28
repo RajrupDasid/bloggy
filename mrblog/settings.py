@@ -88,7 +88,17 @@ WSGI_APPLICATION = 'mrblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 if PRODUCTION:
-    pass
+    DATABASES = {
+    'default': {
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME' : config('SUPABASE_DB_NAME'),
+        'HOST':  config('SUPABASE_HOST'),
+        'USER':  config('DB_USER'),
+        'PASSWORD' : config('SUPABASE_PASSWORD'),
+        'PORT': config('PORT'),
+        'CERT':'prod-ca-2021.crt'
+    }
+    }
 else:
     DATABASES = {
         'default': {
